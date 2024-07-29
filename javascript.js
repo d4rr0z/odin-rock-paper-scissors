@@ -16,41 +16,56 @@ function getHumanChoice() {
     }
 }
 
-let computerScore = 0
-let humanScore = 0
-
 function playRound(humanChoice, computerChoice) {
     if (humanChoice == computerChoice) {
-        console.log("It's a draw!")
+        return "draw"
+        // console.log("It's a draw!")
     }
     else if (humanChoice == "rock") {
         if (computerChoice == "paper") {
-            computerScore++
-            console.log("You lose! Paper beats Rock")
+            return "loss"
+            // console.log("You lose! Paper beats Rock")
         }
-         else if (computerChoice == "scissors") {
-            humanScore++
-            console.log("You win! Rock beats Scissors")
+        else if (computerChoice == "scissors") {
+            return "win"
+            // console.log("You win! Rock beats Scissors")
         }
     }
     else if (humanChoice == "paper") {
         if (computerChoice == "rock") {
-            humanScore++
-            console.log("You win! Paper beats Rock")
+            return "win"
+            // console.log("You win! Paper beats Rock")
         }
         else if (computerChoice == "scissors") {
-            computerScore++
-            console.log("You lose! Scissors beats Paper")
+            return "loss"
+            // console.log("You lose! Scissors beats Paper")
         }
     }
     else if (humanChoice == "scissors") {
         if (computerChoice == "rock") {
-            computerScore++
-            console.log("You lose! Rock beats Scissors")
+            return "loss"
+            // console.log("You lose! Rock beats Scissors")
         }
         else if (computerChoice == "paper") {
-            humanScore++
-            console.log("You win! Scissors beats Paper")
+            return "win"
+            // console.log("You win! Scissors beats Paper")
         }
     }
+}
+
+function playGame() {
+    let computerScore = 0
+    let humanScore = 0
+    for (let i = 0; i < 5; i++) {
+        let humanSelection = getHumanChoice()
+        if (humanSelection == null) break
+        let computerSelection = getComputerChoice()
+        let game = playRound(humanSelection, computerSelection)
+        if (game == "win") humanScore++
+        if (game == "loss") computerScore++
+    }
+    console.log(`Computer ${computerScore}:${humanScore} Human`)
+    if (computerScore < humanScore) console.log("You won!")
+    else if (computerScore > humanScore) console.log("You lost!")
+    else console.log("It's a draw!")
 }
