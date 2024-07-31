@@ -17,18 +17,23 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+    const info = document.querySelector("#info");
+
     if (humanChoice == computerChoice) {
+        info.textContent = "It's a draw!";
         return "draw"
         // console.log("It's a draw!")
         // alert("It's a draw!")
     }
     else if (humanChoice == "rock") {
         if (computerChoice == "paper") {
+            info.textContent = "Paper beats Rock";
             return "loss"
             // console.log("You lose! Paper beats Rock")
             // alert("You lose! Paper beats Rock")
         }
         else if (computerChoice == "scissors") {
+            info.textContent = "Rock beats Scissors";
             return "win"
             // console.log("You win! Rock beats Scissors")
             // alert("You win! Rock beats Scissors")
@@ -36,11 +41,13 @@ function playRound(humanChoice, computerChoice) {
     }
     else if (humanChoice == "paper") {
         if (computerChoice == "rock") {
+            info.textContent = "Paper beats Rock";
             return "win"
             // console.log("You win! Paper beats Rock")
             // alert("You win! Paper beats Rock")
         }
         else if (computerChoice == "scissors") {
+            info.textContent = "Scissors beats Paper";
             return "loss"
             // console.log("You lose! Scissors beats Paper")
             // alert("You lose! Scissors beats Paper")
@@ -48,11 +55,13 @@ function playRound(humanChoice, computerChoice) {
     }
     else if (humanChoice == "scissors") {
         if (computerChoice == "rock") {
+            info.textContent = "Rock beats Scissors";
             return "loss"
             // console.log("You lose! Rock beats Scissors")
             // alert("You lose! Rock beats Scissors")
         }
         else if (computerChoice == "paper") {
+            info.textContent = "Scissors beats Paper";
             return "win"
             // console.log("You win! Scissors beats Paper")
             // alert("You win! Scissors beats Paper")
@@ -107,8 +116,8 @@ function uiRound(choice) {
         choices.style.display = "none";
         const startBtn = document.querySelector("#start");
         startBtn.style.display = "inline";
-        const div = document.querySelector("#results");
-        div.textContent = "You won!";
+        const outcome = document.querySelector("#outcome");
+        outcome.textContent = "You won!";
         resetPoints();
     }
     else if (computerScore == 5) {
@@ -116,8 +125,8 @@ function uiRound(choice) {
         choices.style.display = "none";
         const startBtn = document.querySelector("#start");
         startBtn.style.display = "inline";
-        const div = document.querySelector("#results");
-        div.textContent = "You lost!";
+        const outcome = document.querySelector("#outcome");
+        outcome.textContent = "You lost!";
         resetPoints();
     }
 }
@@ -131,8 +140,12 @@ const startBtn = document.querySelector("#start");
 startBtn.addEventListener("click", () => {
     startBtn.style.display = "none";
     startBtn.textContent = "Play again";
+    const info = document.querySelector("#info");
+    info.textContent = "";
     const choices = document.querySelector("#choices");
     choices.style.display = "inline";
+    const outcome = document.querySelector("#outcome");
+    outcome.textContent = "";
     displayResults();
 })
 
