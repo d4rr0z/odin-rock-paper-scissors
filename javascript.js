@@ -115,7 +115,7 @@ function uiRound(choice) {
         const choices = document.querySelector("#choices");
         choices.style.display = "none";
         const startBtn = document.querySelector("#start");
-        startBtn.style.display = "inline";
+        startBtn.style.display = "flex";
         const outcome = document.querySelector("#outcome");
         outcome.textContent = "You won!";
         resetPoints();
@@ -124,7 +124,7 @@ function uiRound(choice) {
         const choices = document.querySelector("#choices");
         choices.style.display = "none";
         const startBtn = document.querySelector("#start");
-        startBtn.style.display = "inline";
+        startBtn.style.display = "flex";
         const outcome = document.querySelector("#outcome");
         outcome.textContent = "You lost!";
         resetPoints();
@@ -132,8 +132,8 @@ function uiRound(choice) {
 }
 
 function displayResults() {
-    const div = document.querySelector("#results");
-    div.textContent = `Computer ${computerScore}:${humanScore} Player`;
+    const results = document.querySelector("#results");
+    results.textContent = `Computer ${computerScore}:${humanScore} Player`;
 }
 
 const startBtn = document.querySelector("#start");
@@ -143,7 +143,7 @@ startBtn.addEventListener("click", () => {
     const info = document.querySelector("#info");
     info.textContent = "";
     const choices = document.querySelector("#choices");
-    choices.style.display = "inline";
+    choices.style.display = "flex";
     const outcome = document.querySelector("#outcome");
     outcome.textContent = "";
     displayResults();

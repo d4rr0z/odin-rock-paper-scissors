@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Odin Rock Paper Scissors</title>
 </head>
 <body>
-    <div id="outcome"></div>
-    <div id="results">Rock Paper Scissors</div>
-    <div id="info">Press button to start the game</div>
-    <button id="start">Play</button>
-    <div id="choices" style="display: none;">
-        <button id="rockButton">Rock</button>
-        <button id="paperButton">Paper</button>
-        <button id="scissorsButton">Scissors</button>
+    <div class="container">
+        <h1 id="outcome"></h1>
+        <h3 id="results">Rock Paper Scissors</h3>
+        <h5 id="info">Press button to start the game</h5>
+        <button id="start">Play</button>
+        <div id="choices">
+            <button id="rockButton">Rock</button>
+            <button id="paperButton">Paper</button>
+            <button id="scissorsButton">Scissors</button>
+        </div>
     </div>
     <script src="javascript.js"></script>
 </body>
