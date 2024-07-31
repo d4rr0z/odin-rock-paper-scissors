@@ -20,35 +20,42 @@ function playRound(humanChoice, computerChoice) {
     if (humanChoice == computerChoice) {
         return "draw"
         // console.log("It's a draw!")
+        // alert("It's a draw!")
     }
     else if (humanChoice == "rock") {
         if (computerChoice == "paper") {
             return "loss"
             // console.log("You lose! Paper beats Rock")
+            // alert("You lose! Paper beats Rock")
         }
         else if (computerChoice == "scissors") {
             return "win"
             // console.log("You win! Rock beats Scissors")
+            // alert("You win! Rock beats Scissors")
         }
     }
     else if (humanChoice == "paper") {
         if (computerChoice == "rock") {
             return "win"
             // console.log("You win! Paper beats Rock")
+            // alert("You win! Paper beats Rock")
         }
         else if (computerChoice == "scissors") {
             return "loss"
             // console.log("You lose! Scissors beats Paper")
+            // alert("You lose! Scissors beats Paper")
         }
     }
     else if (humanChoice == "scissors") {
         if (computerChoice == "rock") {
             return "loss"
             // console.log("You lose! Rock beats Scissors")
+            // alert("You lose! Rock beats Scissors")
         }
         else if (computerChoice == "paper") {
             return "win"
             // console.log("You win! Scissors beats Paper")
+            // alert("You win! Scissors beats Paper")
         }
     }
 }
@@ -66,6 +73,57 @@ function playGame() {
     }
     console.log(`Computer ${computerScore}:${humanScore} Human`)
     if (computerScore < humanScore) console.log("You won!")
-    else if (computerScore > humanScore) console.log("You lost!")
+        else if (computerScore > humanScore) console.log("You lost!")
     else console.log("It's a draw!")
 }
+
+let computerScore = 0;
+let humanScore = 0;
+displayResults();
+
+function resetPoints() {
+    computerScore = 0;
+    humanScore = 0;
+    displayResults();
+}
+
+function isItOver() {
+    if (humanScore == 5) {
+        resetPoints();
+        return true;
+    }
+    else if (computerScore == 5) {
+        resetPoints();
+        return true;
+    }
+    return false;
+}
+
+function uiRound(choice) {
+    let game = playRound(choice, getComputerChoice());
+    if (game == "win") humanScore++
+    if (game == "loss") computerScore++
+}
+
+function displayResults() {
+    const div = document.querySelector("#results");
+    div.textContent = `Computer ${computerScore}:${humanScore} Human`;
+}
+
+const rBtn = document.querySelector("#rockButton");
+rBtn.addEventListener("click", () => {
+    if (!isItOver()) uiRound("rock");
+    displayResults();
+});
+
+const pBtn = document.querySelector("#paperButton");
+pBtn.addEventListener("click", () => {
+    if (!isItOver()) uiRound("paper");
+    displayResults();
+});
+
+const sBtn = document.querySelector("#scissorsButton");
+sBtn.addEventListener("click", () => {
+    if (!isItOver()) uiRound("scissors");
+    displayResults();
+});
