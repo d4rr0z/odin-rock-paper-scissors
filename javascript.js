@@ -79,12 +79,10 @@ function playGame() {
 
 let computerScore = 0;
 let humanScore = 0;
-displayResults();
 
 function resetPoints() {
     computerScore = 0;
     humanScore = 0;
-    displayResults();
 }
 
 function isItOver() {
@@ -101,29 +99,54 @@ function isItOver() {
 
 function uiRound(choice) {
     let game = playRound(choice, getComputerChoice());
-    if (game == "win") humanScore++
-    if (game == "loss") computerScore++
+    if (game == "win") humanScore++;
+    else if (game == "loss") computerScore++;
+    displayResults();
+    if (humanScore == 5) {
+        const choices = document.querySelector("#choices");
+        choices.style.display = "none";
+        const startBtn = document.querySelector("#start");
+        startBtn.style.display = "inline";
+        const div = document.querySelector("#results");
+        div.textContent = "You won!";
+        resetPoints();
+    }
+    else if (computerScore == 5) {
+        const choices = document.querySelector("#choices");
+        choices.style.display = "none";
+        const startBtn = document.querySelector("#start");
+        startBtn.style.display = "inline";
+        const div = document.querySelector("#results");
+        div.textContent = "You lost!";
+        resetPoints();
+    }
 }
 
 function displayResults() {
     const div = document.querySelector("#results");
-    div.textContent = `Computer ${computerScore}:${humanScore} Human`;
+    div.textContent = `Computer ${computerScore}:${humanScore} Player`;
 }
+
+const startBtn = document.querySelector("#start");
+startBtn.addEventListener("click", () => {
+    startBtn.style.display = "none";
+    startBtn.textContent = "Play again";
+    const choices = document.querySelector("#choices");
+    choices.style.display = "inline";
+    displayResults();
+})
 
 const rBtn = document.querySelector("#rockButton");
 rBtn.addEventListener("click", () => {
     if (!isItOver()) uiRound("rock");
-    displayResults();
 });
 
 const pBtn = document.querySelector("#paperButton");
 pBtn.addEventListener("click", () => {
     if (!isItOver()) uiRound("paper");
-    displayResults();
 });
 
 const sBtn = document.querySelector("#scissorsButton");
 sBtn.addEventListener("click", () => {
     if (!isItOver()) uiRound("scissors");
-    displayResults();
 });
